@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.jboss.org/drools"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <process processType="Private" isExecutable="true" id="dispatchingRuleMainOfPersonMeediateAudit" name="dispatchingRuleMainOfPersonMeediateAudit" tns:packageName="com.sinosoft.dispatchingRule" >
+
+    <extensionElements>
+     <tns:import name="com.sinosoft.bpm.rule.bean.model.RuleProcessOutputXOM" />
+     <tns:import name="com.sinosoft.bpm.rule.bean.model.RuleProcessInputXOM" />
+     <tns:global identifier="ruleXOMHelper" type="cn.sinosoft.processrule.helper.DealingProcessRuleXOM" />
+    </extensionElements>
+    <!-- nodes -->
+    <startEvent id="_jbpm-unique-22" name="Start"  isInterrupting="false">
+    </startEvent>
+    <callActivity id="_jbpm-unique-23" name="人伤调解总公司一级审核规则流" calledElement="dispatchingRuleMainOfPersonMeediateAuditOfHeadPersonMeediateAuditOne" >
+      <ioSpecification>
+        <inputSet>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+    </callActivity>
+    <exclusiveGateway id="_jbpm-unique-24" name="Gateway" gatewayDirection="Diverging" >
+    </exclusiveGateway>
+    <businessRuleTask id="_jbpm-unique-25" name="人伤调解分公司一级审核_0" g:ruleFlowGroup="dispatchingRuleMainOfPersonMeediateAuditOfBranchPersonMeediateAuditOne" >
+      <ioSpecification>
+        <inputSet>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+    </businessRuleTask>
+    <exclusiveGateway id="_jbpm-unique-26" name="Gateway" gatewayDirection="Converging" >
+    </exclusiveGateway>
+    <endEvent id="_jbpm-unique-27" name="End" >
+        <terminateEventDefinition />
+    </endEvent>
+    <businessRuleTask id="_jbpm-unique-0" name="新人伤调解审核" g:ruleFlowGroup="dispatchingRuleMainOfNewPersonMeediateAudit" >
+      <ioSpecification>
+        <inputSet>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+    </businessRuleTask>
+
+    <!-- connections -->
+    <sequenceFlow id="_jbpm-unique-24-_jbpm-unique-23" sourceRef="_jbpm-unique-24" targetRef="_jbpm-unique-23" name="弃用" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" >//return ruleXOMHelper.inPutXom.taskType.equals("HeadPersonMeediateAuditOne");
+return false;</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_jbpm-unique-22-_jbpm-unique-24" sourceRef="_jbpm-unique-22" targetRef="_jbpm-unique-24" />
+    <sequenceFlow id="_jbpm-unique-24-_jbpm-unique-25" sourceRef="_jbpm-unique-24" targetRef="_jbpm-unique-25" name="弃用" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" >//return ruleXOMHelper.inPutXom.taskType.equals("BranchPersonMeediateAuditOne");
+return false;</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_jbpm-unique-25-_jbpm-unique-26" sourceRef="_jbpm-unique-25" targetRef="_jbpm-unique-26" />
+    <sequenceFlow id="_jbpm-unique-23-_jbpm-unique-26" sourceRef="_jbpm-unique-23" targetRef="_jbpm-unique-26" />
+    <sequenceFlow id="_jbpm-unique-24-_jbpm-unique-26" sourceRef="_jbpm-unique-24" targetRef="_jbpm-unique-26" name="else" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" >return !(ruleXOMHelper.inPutXom.taskType.equals("CenterPersonMeediateAuditOne")||
+ruleXOMHelper.inPutXom.taskType.equals("CenterPersonMeediateAuditTwo")||
+ruleXOMHelper.inPutXom.taskType.equals("CenterPersonMeediateAuditThree")||
+ruleXOMHelper.inPutXom.taskType.equals("BranchPersonMeediateAuditOne")||
+ruleXOMHelper.inPutXom.taskType.equals("BranchPersonMeediateAuditTwo")||
+ruleXOMHelper.inPutXom.taskType.equals("BranchPersonMeediateAuditThree")||
+ruleXOMHelper.inPutXom.taskType.equals("HeadPersonMeediateAuditOne")||
+ruleXOMHelper.inPutXom.taskType.equals("HeadPersonMeediateAuditTwo")||
+ruleXOMHelper.inPutXom.taskType.equals("HeadPersonMeediateAuditThree"));</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_jbpm-unique-0-_jbpm-unique-26" sourceRef="_jbpm-unique-0" targetRef="_jbpm-unique-26" />
+    <sequenceFlow id="_jbpm-unique-26-_jbpm-unique-27" sourceRef="_jbpm-unique-26" targetRef="_jbpm-unique-27" />
+    <sequenceFlow id="_jbpm-unique-24-_jbpm-unique-0" sourceRef="_jbpm-unique-24" targetRef="_jbpm-unique-0" name="constraint" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" >return ruleXOMHelper.inPutXom.taskType.equals("CenterPersonMeediateAuditOne")||
+ruleXOMHelper.inPutXom.taskType.equals("CenterPersonMeediateAuditTwo")||
+ruleXOMHelper.inPutXom.taskType.equals("CenterPersonMeediateAuditThree")||
+ruleXOMHelper.inPutXom.taskType.equals("BranchPersonMeediateAuditOne")||
+ruleXOMHelper.inPutXom.taskType.equals("BranchPersonMeediateAuditTwo")||
+ruleXOMHelper.inPutXom.taskType.equals("BranchPersonMeediateAuditThree")||
+ruleXOMHelper.inPutXom.taskType.equals("HeadPersonMeediateAuditOne")||
+ruleXOMHelper.inPutXom.taskType.equals("HeadPersonMeediateAuditTwo")||
+ruleXOMHelper.inPutXom.taskType.equals("HeadPersonMeediateAuditThree");</conditionExpression>
+    </sequenceFlow>
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="dispatchingRuleMainOfPersonMeediateAudit" >
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-22" >
+        <dc:Bounds x="305" y="19" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-23" >
+        <dc:Bounds x="178" y="148" width="110" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-24" >
+        <dc:Bounds x="306" y="89" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-25" >
+        <dc:Bounds x="380" y="147" width="80" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-26" >
+        <dc:Bounds x="312" y="220" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-27" >
+        <dc:Bounds x="312" y="289" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-0" >
+        <dc:Bounds x="496" y="144" width="136" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-24-_jbpm-unique-23" >
+        <di:waypoint x="330" y="113" />
+        <di:waypoint x="232" y="113" />
+        <di:waypoint x="233" y="172" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-22-_jbpm-unique-24" >
+        <di:waypoint x="329" y="43" />
+        <di:waypoint x="330" y="113" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-24-_jbpm-unique-25" >
+        <di:waypoint x="330" y="113" />
+        <di:waypoint x="419" y="113" />
+        <di:waypoint x="420" y="171" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-25-_jbpm-unique-26" >
+        <di:waypoint x="420" y="171" />
+        <di:waypoint x="419" y="244" />
+        <di:waypoint x="336" y="244" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-23-_jbpm-unique-26" >
+        <di:waypoint x="233" y="172" />
+        <di:waypoint x="233" y="244" />
+        <di:waypoint x="336" y="244" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-24-_jbpm-unique-26" >
+        <di:waypoint x="330" y="113" />
+        <di:waypoint x="101" y="113" />
+        <di:waypoint x="100" y="244" />
+        <di:waypoint x="336" y="244" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-0-_jbpm-unique-26" >
+        <di:waypoint x="564" y="168" />
+        <di:waypoint x="569" y="242" />
+        <di:waypoint x="336" y="244" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-26-_jbpm-unique-27" >
+        <di:waypoint x="336" y="244" />
+        <di:waypoint x="336" y="313" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-24-_jbpm-unique-0" >
+        <di:waypoint x="330" y="113" />
+        <di:waypoint x="570" y="113" />
+        <di:waypoint x="564" y="168" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>
