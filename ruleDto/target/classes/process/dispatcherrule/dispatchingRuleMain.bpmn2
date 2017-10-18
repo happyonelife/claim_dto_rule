@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.jboss.org/drools"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <process processType="Private" isExecutable="true" id="dispatchingRuleMain" name="dispatchingRuleMain" tns:packageName="com.sinosoft.dispatchingRule" >
+
+    <extensionElements>
+     <tns:import name="com.sinosoft.bpm.rule.bean.model.RuleProcessOutputXOM" />
+     <tns:import name="com.sinosoft.bpm.rule.bean.model.RuleProcessInputXOM" />
+     <tns:global identifier="ruleXOMHelper" type="cn.sinosoft.processrule.helper.DealingProcessRuleXOM" />
+    </extensionElements>
+    <!-- nodes -->
+    <startEvent id="_jbpm-unique-5" name="Start"  isInterrupting="false">
+    </startEvent>
+    <callActivity id="_jbpm-unique-6" name="人伤调解审核规则流" calledElement="dispatchingRuleMainOfPersonMeediateAudit" >
+      <ioSpecification>
+        <inputSet>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+    </callActivity>
+    <callActivity id="_jbpm-unique-7" name="仲裁规则流" calledElement="dispatchingRuleMainOfArbitration" >
+      <ioSpecification>
+        <inputSet>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+    </callActivity>
+    <callActivity id="_jbpm-unique-8" name="诉讼规则流" calledElement="dispatchingRuleMainOfLawSuit" >
+      <ioSpecification>
+        <inputSet>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+    </callActivity>
+    <callActivity id="_jbpm-unique-9" name="追偿规则流" calledElement="dispatchingRuleMainOfReplevy" >
+      <ioSpecification>
+        <inputSet>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+    </callActivity>
+    <callActivity id="_jbpm-unique-10" name="核赔规则流" calledElement="dispatchingRuleMainOfUndwrt" >
+      <ioSpecification>
+        <inputSet>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+    </callActivity>
+    <callActivity id="_jbpm-unique-11" name="理算规则流" calledElement="dispatchingRuleMainOfCompensate" >
+      <ioSpecification>
+        <inputSet>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+    </callActivity>
+    <callActivity id="_jbpm-unique-12" name="财产核损规则流" calledElement="dispatchingRuleMainOfPropLossVerify" >
+      <ioSpecification>
+        <inputSet>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+    </callActivity>
+    <callActivity id="_jbpm-unique-13" name="配件审验_0规则流" calledElement="dispatchingRuleMainOfPartAudit" >
+      <ioSpecification>
+        <inputSet>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+    </callActivity>
+    <callActivity id="_jbpm-unique-14" name="车辆核损规则流" calledElement="dispatchingRuleMainOfCarLossVerify" >
+      <ioSpecification>
+        <inputSet>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+    </callActivity>
+    <callActivity id="_jbpm-unique-15" name="车辆核价规则流" calledElement="dispatchingRuleMainOfCarLossPrice" >
+      <ioSpecification>
+        <inputSet>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+    </callActivity>
+    <exclusiveGateway id="_jbpm-unique-16" name="Gateway" gatewayDirection="Diverging" >
+    </exclusiveGateway>
+    <exclusiveGateway id="_jbpm-unique-17" name="Gateway" gatewayDirection="Converging" >
+    </exclusiveGateway>
+    <endEvent id="_jbpm-unique-18" name="End" >
+        <terminateEventDefinition />
+    </endEvent>
+    <callActivity id="_jbpm-unique-19" name="人伤核损规则流" calledElement="dispatchingRuleMainOfPersonLossVerify" >
+      <ioSpecification>
+        <inputSet>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+    </callActivity>
+    <callActivity id="_jbpm-unique-20" name="人伤首调派工" calledElement="dispatchingRuleMainOfPersonInvestigate" >
+      <ioSpecification>
+        <inputSet>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+    </callActivity>
+    <callActivity id="_jbpm-unique-0" name="大案派工规则流" calledElement="dispatchingRuleMainOfBigCase" >
+      <ioSpecification>
+        <inputSet>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+    </callActivity>
+    <callActivity id="_jbpm-unique-21" name="人伤跟踪派工" calledElement="dispatchingRuleMainOfPersonTrace" >
+      <ioSpecification>
+        <inputSet>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+    </callActivity>
+
+    <!-- connections -->
+    <sequenceFlow id="_jbpm-unique-16-_jbpm-unique-6" sourceRef="_jbpm-unique-16" targetRef="_jbpm-unique-6" name="constraint" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" >return ruleXOMHelper.inPutXom.taskCatalog.equals("PersonMeediateAudit");</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_jbpm-unique-16-_jbpm-unique-7" sourceRef="_jbpm-unique-16" targetRef="_jbpm-unique-7" name="constraint" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" >return ruleXOMHelper.inPutXom.taskCatalog.equals("ArbitrationModify") ||
+ruleXOMHelper.inPutXom.taskCatalog.equals("ArbitrationAudit") ||
+ruleXOMHelper.inPutXom.taskCatalog.equals("ArbitrationRelief") ||
+ruleXOMHelper.inPutXom.taskCatalog.equals("Arbitration");</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_jbpm-unique-16-_jbpm-unique-8" sourceRef="_jbpm-unique-16" targetRef="_jbpm-unique-8" name="constraint" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" >return ruleXOMHelper.inPutXom.taskCatalog.equals("LawSuitModify") ||
+ruleXOMHelper.inPutXom.taskCatalog.equals("LawSuitAudit") ||
+ruleXOMHelper.inPutXom.taskCatalog.equals("LawSuit");</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_jbpm-unique-16-_jbpm-unique-9" sourceRef="_jbpm-unique-16" targetRef="_jbpm-unique-9" name="constraint" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" >return ruleXOMHelper.inPutXom.taskCatalog.equals("ReplevyAudit") ||
+ruleXOMHelper.inPutXom.taskCatalog.equals("ApplyReplevyAudit") ||
+ruleXOMHelper.inPutXom.taskCatalog.equals("ApplyReplevy") ||
+ruleXOMHelper.inPutXom.taskCatalog.equals("Replevy");</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_jbpm-unique-16-_jbpm-unique-10" sourceRef="_jbpm-unique-16" targetRef="_jbpm-unique-10" name="constraint" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" >return ruleXOMHelper.inPutXom.taskCatalog.equals("Undwrt");</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_jbpm-unique-16-_jbpm-unique-11" sourceRef="_jbpm-unique-16" targetRef="_jbpm-unique-11" name="constraint" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" >return ruleXOMHelper.inPutXom.taskCatalog.equals("Compensate");</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_jbpm-unique-16-_jbpm-unique-12" sourceRef="_jbpm-unique-16" targetRef="_jbpm-unique-12" name="constraint" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" >return ruleXOMHelper.inPutXom.taskCatalog.equals("PropLossVerify");</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_jbpm-unique-16-_jbpm-unique-13" sourceRef="_jbpm-unique-16" targetRef="_jbpm-unique-13" name="constraint" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" >return ruleXOMHelper.inPutXom.taskCatalog.equals("PartAuditVerify") ||
+ruleXOMHelper.inPutXom.taskCatalog.equals("PartAudit");</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_jbpm-unique-16-_jbpm-unique-14" sourceRef="_jbpm-unique-16" targetRef="_jbpm-unique-14" name="constraint" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" >return ruleXOMHelper.inPutXom.taskCatalog.equals("CarLossVerify");</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_jbpm-unique-16-_jbpm-unique-15" sourceRef="_jbpm-unique-16" targetRef="_jbpm-unique-15" name="constraint" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" >return ruleXOMHelper.inPutXom.taskCatalog.equals("CarLossPrice");</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_jbpm-unique-5-_jbpm-unique-16" sourceRef="_jbpm-unique-5" targetRef="_jbpm-unique-16" />
+    <sequenceFlow id="_jbpm-unique-6-_jbpm-unique-17" sourceRef="_jbpm-unique-6" targetRef="_jbpm-unique-17" />
+    <sequenceFlow id="_jbpm-unique-7-_jbpm-unique-17" sourceRef="_jbpm-unique-7" targetRef="_jbpm-unique-17" />
+    <sequenceFlow id="_jbpm-unique-8-_jbpm-unique-17" sourceRef="_jbpm-unique-8" targetRef="_jbpm-unique-17" />
+    <sequenceFlow id="_jbpm-unique-9-_jbpm-unique-17" sourceRef="_jbpm-unique-9" targetRef="_jbpm-unique-17" />
+    <sequenceFlow id="_jbpm-unique-10-_jbpm-unique-17" sourceRef="_jbpm-unique-10" targetRef="_jbpm-unique-17" />
+    <sequenceFlow id="_jbpm-unique-11-_jbpm-unique-17" sourceRef="_jbpm-unique-11" targetRef="_jbpm-unique-17" />
+    <sequenceFlow id="_jbpm-unique-12-_jbpm-unique-17" sourceRef="_jbpm-unique-12" targetRef="_jbpm-unique-17" />
+    <sequenceFlow id="_jbpm-unique-14-_jbpm-unique-17" sourceRef="_jbpm-unique-14" targetRef="_jbpm-unique-17" />
+    <sequenceFlow id="_jbpm-unique-15-_jbpm-unique-17" sourceRef="_jbpm-unique-15" targetRef="_jbpm-unique-17" />
+    <sequenceFlow id="_jbpm-unique-13-_jbpm-unique-17" sourceRef="_jbpm-unique-13" targetRef="_jbpm-unique-17" />
+    <sequenceFlow id="_jbpm-unique-19-_jbpm-unique-17" sourceRef="_jbpm-unique-19" targetRef="_jbpm-unique-17" />
+    <sequenceFlow id="_jbpm-unique-16-_jbpm-unique-17" sourceRef="_jbpm-unique-16" targetRef="_jbpm-unique-17" name="constraint" tns:priority="4" >
+      <conditionExpression xsi:type="tFormalExpression" >return true;</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_jbpm-unique-0-_jbpm-unique-17" sourceRef="_jbpm-unique-0" targetRef="_jbpm-unique-17" />
+    <sequenceFlow id="_jbpm-unique-20-_jbpm-unique-17" sourceRef="_jbpm-unique-20" targetRef="_jbpm-unique-17" />
+    <sequenceFlow id="_jbpm-unique-21-_jbpm-unique-17" sourceRef="_jbpm-unique-21" targetRef="_jbpm-unique-17" />
+    <sequenceFlow id="_jbpm-unique-17-_jbpm-unique-18" sourceRef="_jbpm-unique-17" targetRef="_jbpm-unique-18" />
+    <sequenceFlow id="_jbpm-unique-16-_jbpm-unique-19" sourceRef="_jbpm-unique-16" targetRef="_jbpm-unique-19" name="constraint" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" >return ruleXOMHelper.inPutXom.taskCatalog.equals("PersonLossVerify");</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_jbpm-unique-16-_jbpm-unique-20" sourceRef="_jbpm-unique-16" targetRef="_jbpm-unique-20" name="PersonInvestigate" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" >return ruleXOMHelper.inPutXom.taskCatalog.equals("PersonInvestigateAudit");</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_jbpm-unique-16-_jbpm-unique-0" sourceRef="_jbpm-unique-16" targetRef="_jbpm-unique-0" name="constraint" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" >return ruleXOMHelper.inPutXom.taskCatalog.equals("CarMajorCaseReport")||
+ruleXOMHelper.inPutXom.taskCatalog.equals("PersonMajorCaseReport")||
+ruleXOMHelper.inPutXom.taskCatalog.equals("BigCase");</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_jbpm-unique-16-_jbpm-unique-21" sourceRef="_jbpm-unique-16" targetRef="_jbpm-unique-21" name="人伤跟踪" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" >return ruleXOMHelper.inPutXom.taskCatalog.equals("PersonTraceAudit");</conditionExpression>
+    </sequenceFlow>
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="dispatchingRuleMain" >
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-5" >
+        <dc:Bounds x="908" y="36" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-6" >
+        <dc:Bounds x="100" y="231" width="110" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-7" >
+        <dc:Bounds x="262" y="231" width="110" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-8" >
+        <dc:Bounds x="421" y="231" width="110" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-9" >
+        <dc:Bounds x="577" y="231" width="110" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-10" >
+        <dc:Bounds x="723" y="228" width="110" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-11" >
+        <dc:Bounds x="877" y="229" width="110" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-12" >
+        <dc:Bounds x="1029" y="229" width="110" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-13" >
+        <dc:Bounds x="1486" y="229" width="110" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-14" >
+        <dc:Bounds x="1192" y="229" width="110" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-15" >
+        <dc:Bounds x="1339" y="228" width="110" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-16" >
+        <dc:Bounds x="908" y="131" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-17" >
+        <dc:Bounds x="910" y="318" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-18" >
+        <dc:Bounds x="911" y="393" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-19" >
+        <dc:Bounds x="1626" y="227" width="110" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-20" >
+        <dc:Bounds x="1903" y="227" width="110" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-0" >
+        <dc:Bounds x="1766" y="228" width="110" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-21" >
+        <dc:Bounds x="2041" y="228" width="110" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-16-_jbpm-unique-6" >
+        <di:waypoint x="932" y="155" />
+        <di:waypoint x="155" y="155" />
+        <di:waypoint x="155" y="255" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-16-_jbpm-unique-7" >
+        <di:waypoint x="932" y="155" />
+        <di:waypoint x="316" y="155" />
+        <di:waypoint x="317" y="255" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-16-_jbpm-unique-8" >
+        <di:waypoint x="932" y="155" />
+        <di:waypoint x="476" y="155" />
+        <di:waypoint x="476" y="255" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-16-_jbpm-unique-9" >
+        <di:waypoint x="932" y="155" />
+        <di:waypoint x="631" y="155" />
+        <di:waypoint x="632" y="255" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-16-_jbpm-unique-10" >
+        <di:waypoint x="932" y="155" />
+        <di:waypoint x="777" y="155" />
+        <di:waypoint x="778" y="252" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-16-_jbpm-unique-11" >
+        <di:waypoint x="932" y="155" />
+        <di:waypoint x="932" y="253" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-16-_jbpm-unique-12" >
+        <di:waypoint x="932" y="155" />
+        <di:waypoint x="1084" y="155" />
+        <di:waypoint x="1084" y="253" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-16-_jbpm-unique-13" >
+        <di:waypoint x="932" y="155" />
+        <di:waypoint x="1541" y="155" />
+        <di:waypoint x="1541" y="253" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-16-_jbpm-unique-14" >
+        <di:waypoint x="932" y="155" />
+        <di:waypoint x="1247" y="155" />
+        <di:waypoint x="1247" y="253" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-16-_jbpm-unique-15" >
+        <di:waypoint x="932" y="155" />
+        <di:waypoint x="1394" y="155" />
+        <di:waypoint x="1394" y="252" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-5-_jbpm-unique-16" >
+        <di:waypoint x="932" y="60" />
+        <di:waypoint x="932" y="155" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-6-_jbpm-unique-17" >
+        <di:waypoint x="155" y="255" />
+        <di:waypoint x="155" y="342" />
+        <di:waypoint x="934" y="342" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-7-_jbpm-unique-17" >
+        <di:waypoint x="317" y="255" />
+        <di:waypoint x="317" y="342" />
+        <di:waypoint x="934" y="342" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-8-_jbpm-unique-17" >
+        <di:waypoint x="476" y="255" />
+        <di:waypoint x="476" y="342" />
+        <di:waypoint x="934" y="342" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-9-_jbpm-unique-17" >
+        <di:waypoint x="632" y="255" />
+        <di:waypoint x="631" y="342" />
+        <di:waypoint x="934" y="342" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-10-_jbpm-unique-17" >
+        <di:waypoint x="778" y="252" />
+        <di:waypoint x="778" y="342" />
+        <di:waypoint x="934" y="342" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-11-_jbpm-unique-17" >
+        <di:waypoint x="932" y="253" />
+        <di:waypoint x="934" y="342" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-12-_jbpm-unique-17" >
+        <di:waypoint x="1084" y="253" />
+        <di:waypoint x="1083" y="342" />
+        <di:waypoint x="934" y="342" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-14-_jbpm-unique-17" >
+        <di:waypoint x="1247" y="253" />
+        <di:waypoint x="1247" y="342" />
+        <di:waypoint x="934" y="342" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-15-_jbpm-unique-17" >
+        <di:waypoint x="1394" y="252" />
+        <di:waypoint x="1394" y="342" />
+        <di:waypoint x="934" y="342" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-13-_jbpm-unique-17" >
+        <di:waypoint x="1541" y="253" />
+        <di:waypoint x="1540" y="342" />
+        <di:waypoint x="934" y="342" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-19-_jbpm-unique-17" >
+        <di:waypoint x="1681" y="251" />
+        <di:waypoint x="1680" y="342" />
+        <di:waypoint x="934" y="342" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-16-_jbpm-unique-17" >
+        <di:waypoint x="932" y="155" />
+        <di:waypoint x="13" y="155" />
+        <di:waypoint x="13" y="342" />
+        <di:waypoint x="934" y="342" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-0-_jbpm-unique-17" >
+        <di:waypoint x="1821" y="252" />
+        <di:waypoint x="1821" y="342" />
+        <di:waypoint x="934" y="342" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-20-_jbpm-unique-17" >
+        <di:waypoint x="1958" y="251" />
+        <di:waypoint x="1958" y="342" />
+        <di:waypoint x="934" y="342" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-21-_jbpm-unique-17" >
+        <di:waypoint x="2096" y="252" />
+        <di:waypoint x="2095" y="342" />
+        <di:waypoint x="934" y="342" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-17-_jbpm-unique-18" >
+        <di:waypoint x="934" y="342" />
+        <di:waypoint x="935" y="417" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-16-_jbpm-unique-19" >
+        <di:waypoint x="932" y="155" />
+        <di:waypoint x="1681" y="155" />
+        <di:waypoint x="1681" y="251" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-16-_jbpm-unique-20" >
+        <di:waypoint x="932" y="155" />
+        <di:waypoint x="1958" y="155" />
+        <di:waypoint x="1958" y="251" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-16-_jbpm-unique-0" >
+        <di:waypoint x="932" y="155" />
+        <di:waypoint x="1820" y="155" />
+        <di:waypoint x="1821" y="252" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-16-_jbpm-unique-21" >
+        <di:waypoint x="932" y="155" />
+        <di:waypoint x="2096" y="155" />
+        <di:waypoint x="2096" y="252" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>
