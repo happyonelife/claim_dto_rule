@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.jboss.org/drools"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <process processType="Private" isExecutable="true" id="dispatchingRuleMainOfPropLossVerify" name="dispatchingRuleMainOfPropLossVerify" tns:packageName="com.sinosoft.dispatchingRule" >
+
+    <extensionElements>
+     <tns:import name="com.sinosoft.bpm.rule.bean.model.RuleProcessOutputXOM" />
+     <tns:import name="com.sinosoft.bpm.rule.bean.model.RuleProcessInputXOM" />
+     <tns:global identifier="ruleXOMHelper" type="cn.sinosoft.processrule.helper.DealingProcessRuleXOM" />
+    </extensionElements>
+    <!-- nodes -->
+    <startEvent id="_jbpm-unique-0" name="Start"  isInterrupting="false">
+    </startEvent>
+    <callActivity id="_jbpm-unique-1" name="财产总公司一级核损规则流" calledElement="dispatchingRuleMainOfPropLossVerifyOfHeadPropLossVerifyOne" >
+      <ioSpecification>
+        <inputSet>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+    </callActivity>
+    <exclusiveGateway id="_jbpm-unique-2" name="Gateway" gatewayDirection="Diverging" >
+    </exclusiveGateway>
+    <businessRuleTask id="_jbpm-unique-3" name="财产总公司二级核损" g:ruleFlowGroup="dispatchingRuleNULL" >
+      <ioSpecification>
+        <inputSet>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+    </businessRuleTask>
+    <businessRuleTask id="_jbpm-unique-4" name="财产分公司一级核损" g:ruleFlowGroup="dispatchingRuleNULL" >
+      <ioSpecification>
+        <inputSet>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+    </businessRuleTask>
+    <exclusiveGateway id="_jbpm-unique-5" name="Gateway" gatewayDirection="Converging" >
+    </exclusiveGateway>
+    <endEvent id="_jbpm-unique-6" name="End" >
+        <terminateEventDefinition />
+    </endEvent>
+    <businessRuleTask id="_jbpm-unique-7" name="财产新派工" g:ruleFlowGroup="dispatchingRuleMainOfPropLossVerifyOfNewPropLossVerify" >
+      <ioSpecification>
+        <inputSet>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+    </businessRuleTask>
+
+    <!-- connections -->
+    <sequenceFlow id="_jbpm-unique-2-_jbpm-unique-1" sourceRef="_jbpm-unique-2" targetRef="_jbpm-unique-1" name="constraint" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" >//return ruleXOMHelper.inPutXom.taskType.equals("HeadPropLossVerifyOne");
+return false;</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_jbpm-unique-0-_jbpm-unique-2" sourceRef="_jbpm-unique-0" targetRef="_jbpm-unique-2" />
+    <sequenceFlow id="_jbpm-unique-2-_jbpm-unique-3" sourceRef="_jbpm-unique-2" targetRef="_jbpm-unique-3" name="constraint" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" >//return ruleXOMHelper.inPutXom.taskType.equals("HeadPropLossVerifyTwo");
+return false;</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_jbpm-unique-2-_jbpm-unique-4" sourceRef="_jbpm-unique-2" targetRef="_jbpm-unique-4" name="constraint" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" >//return ruleXOMHelper.inPutXom.taskType.equals("BranchPropLossVerifyOne");
+return false;</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_jbpm-unique-1-_jbpm-unique-5" sourceRef="_jbpm-unique-1" targetRef="_jbpm-unique-5" />
+    <sequenceFlow id="_jbpm-unique-3-_jbpm-unique-5" sourceRef="_jbpm-unique-3" targetRef="_jbpm-unique-5" />
+    <sequenceFlow id="_jbpm-unique-4-_jbpm-unique-5" sourceRef="_jbpm-unique-4" targetRef="_jbpm-unique-5" />
+    <sequenceFlow id="_jbpm-unique-2-_jbpm-unique-5" sourceRef="_jbpm-unique-2" targetRef="_jbpm-unique-5" name="constraint" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" >//return !(ruleXOMHelper.inPutXom.taskType.equals("HeadPropLossVerifyOne") ||
+//ruleXOMHelper.inPutXom.taskType.equals("HeadPropLossVerifyTwo") ||
+//ruleXOMHelper.inPutXom.taskType.equals("BranchPropLossVerifyOne"));
+return !(ruleXOMHelper.inPutXom.taskType.equals("CenterPropLossVerifyOne")||
+ruleXOMHelper.inPutXom.taskType.equals("CenterPropLossVerifyTwo")||
+ruleXOMHelper.inPutXom.taskType.equals("CenterPropLossVerifyThree")||
+ruleXOMHelper.inPutXom.taskType.equals("BranchPropLossVerifyOne")||
+ruleXOMHelper.inPutXom.taskType.equals("BranchPropLossVerifyTwo")||
+ruleXOMHelper.inPutXom.taskType.equals("BranchPropLossVerifyThree")||
+ruleXOMHelper.inPutXom.taskType.equals("HeadPropLossVerifyOne")||
+ruleXOMHelper.inPutXom.taskType.equals("HeadPropLossVerifyTwo")||
+ruleXOMHelper.inPutXom.taskType.equals("HeadPropLossVerifyThree"));</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_jbpm-unique-7-_jbpm-unique-5" sourceRef="_jbpm-unique-7" targetRef="_jbpm-unique-5" />
+    <sequenceFlow id="_jbpm-unique-5-_jbpm-unique-6" sourceRef="_jbpm-unique-5" targetRef="_jbpm-unique-6" />
+    <sequenceFlow id="_jbpm-unique-2-_jbpm-unique-7" sourceRef="_jbpm-unique-2" targetRef="_jbpm-unique-7" name="constraint" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" >return ruleXOMHelper.inPutXom.taskType.equals("CenterPropLossVerifyOne")||
+ruleXOMHelper.inPutXom.taskType.equals("CenterPropLossVerifyTwo")||
+ruleXOMHelper.inPutXom.taskType.equals("CenterPropLossVerifyThree")||
+ruleXOMHelper.inPutXom.taskType.equals("BranchPropLossVerifyOne")||
+ruleXOMHelper.inPutXom.taskType.equals("BranchPropLossVerifyTwo")||
+ruleXOMHelper.inPutXom.taskType.equals("BranchPropLossVerifyThree")||
+ruleXOMHelper.inPutXom.taskType.equals("HeadPropLossVerifyOne")||
+ruleXOMHelper.inPutXom.taskType.equals("HeadPropLossVerifyTwo")||
+ruleXOMHelper.inPutXom.taskType.equals("HeadPropLossVerifyThree");</conditionExpression>
+    </sequenceFlow>
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="dispatchingRuleMainOfPropLossVerify" >
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-0" >
+        <dc:Bounds x="479" y="18" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-1" >
+        <dc:Bounds x="378" y="181" width="110" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-2" >
+        <dc:Bounds x="479" y="95" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-3" >
+        <dc:Bounds x="535" y="180" width="80" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-4" >
+        <dc:Bounds x="663" y="180" width="80" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-5" >
+        <dc:Bounds x="479" y="266" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-6" >
+        <dc:Bounds x="480" y="344" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-7" >
+        <dc:Bounds x="182" y="182" width="80" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-2-_jbpm-unique-1" >
+        <di:waypoint x="503" y="119" />
+        <di:waypoint x="432" y="119" />
+        <di:waypoint x="433" y="205" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-0-_jbpm-unique-2" >
+        <di:waypoint x="503" y="42" />
+        <di:waypoint x="503" y="119" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-2-_jbpm-unique-3" >
+        <di:waypoint x="503" y="119" />
+        <di:waypoint x="575" y="119" />
+        <di:waypoint x="575" y="204" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-2-_jbpm-unique-4" >
+        <di:waypoint x="503" y="119" />
+        <di:waypoint x="703" y="119" />
+        <di:waypoint x="703" y="204" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-1-_jbpm-unique-5" >
+        <di:waypoint x="433" y="205" />
+        <di:waypoint x="432" y="290" />
+        <di:waypoint x="503" y="290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-3-_jbpm-unique-5" >
+        <di:waypoint x="575" y="204" />
+        <di:waypoint x="575" y="290" />
+        <di:waypoint x="503" y="290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-4-_jbpm-unique-5" >
+        <di:waypoint x="703" y="204" />
+        <di:waypoint x="703" y="290" />
+        <di:waypoint x="503" y="290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-2-_jbpm-unique-5" >
+        <di:waypoint x="503" y="119" />
+        <di:waypoint x="337" y="119" />
+        <di:waypoint x="337" y="290" />
+        <di:waypoint x="503" y="290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-7-_jbpm-unique-5" >
+        <di:waypoint x="222" y="206" />
+        <di:waypoint x="221" y="290" />
+        <di:waypoint x="503" y="290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-5-_jbpm-unique-6" >
+        <di:waypoint x="503" y="290" />
+        <di:waypoint x="504" y="368" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-2-_jbpm-unique-7" >
+        <di:waypoint x="503" y="119" />
+        <di:waypoint x="222" y="119" />
+        <di:waypoint x="222" y="206" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>

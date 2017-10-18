@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.jboss.org/drools"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <process processType="Private" isExecutable="true" id="dispatchingRuleMainOfReplevyOfApplyReplevyAudit" name="dispatchingRuleMainOfReplevyOfApplyReplevyAudit" tns:packageName="com.sinosoft.dispatchingRule" >
+
+    <extensionElements>
+     <tns:import name="com.sinosoft.bpm.rule.bean.model.RuleProcessOutputXOM" />
+     <tns:import name="com.sinosoft.bpm.rule.bean.model.RuleProcessInputXOM" />
+     <tns:global identifier="ruleXOMHelper" type="cn.sinosoft.processrule.helper.DealingProcessRuleXOM" />
+    </extensionElements>
+    <!-- nodes -->
+    <startEvent id="_jbpm-unique-92" name="Start"  isInterrupting="false">
+    </startEvent>
+    <exclusiveGateway id="_jbpm-unique-93" name="Gateway" gatewayDirection="Diverging" >
+    </exclusiveGateway>
+    <businessRuleTask id="_jbpm-unique-94" name="总公司追偿申请一级审核" g:ruleFlowGroup="dispatchingRuleMainOfReplevyOfApplyReplevyAuditOfHeadApplyReplevyAuditOne" >
+      <ioSpecification>
+        <inputSet>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+    </businessRuleTask>
+    <businessRuleTask id="_jbpm-unique-95" name="分公司追偿申请一级审核" g:ruleFlowGroup="dispatchingRuleNULL" >
+      <ioSpecification>
+        <inputSet>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+    </businessRuleTask>
+    <exclusiveGateway id="_jbpm-unique-97" name="Gateway" gatewayDirection="Converging" >
+    </exclusiveGateway>
+    <endEvent id="_jbpm-unique-98" name="End" >
+        <terminateEventDefinition />
+    </endEvent>
+    <businessRuleTask id="_jbpm-unique-0" name="分公司追偿申请一级审核" g:ruleFlowGroup="dispatchingRuleNULL" >
+      <ioSpecification>
+        <inputSet>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+    </businessRuleTask>
+
+    <!-- connections -->
+    <sequenceFlow id="_jbpm-unique-92-_jbpm-unique-93" sourceRef="_jbpm-unique-92" targetRef="_jbpm-unique-93" />
+    <sequenceFlow id="_jbpm-unique-93-_jbpm-unique-94" sourceRef="_jbpm-unique-93" targetRef="_jbpm-unique-94" name="constraint" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" >return ruleXOMHelper.inPutXom.taskType.equals("HeadApplyReplevyAuditOne");</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_jbpm-unique-93-_jbpm-unique-95" sourceRef="_jbpm-unique-93" targetRef="_jbpm-unique-95" name="constraint" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" >return ruleXOMHelper.inPutXom.taskType.equals("BranchApplyReplevyAuditOne");</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_jbpm-unique-95-_jbpm-unique-97" sourceRef="_jbpm-unique-95" targetRef="_jbpm-unique-97" />
+    <sequenceFlow id="_jbpm-unique-94-_jbpm-unique-97" sourceRef="_jbpm-unique-94" targetRef="_jbpm-unique-97" />
+    <sequenceFlow id="_jbpm-unique-93-_jbpm-unique-97" sourceRef="_jbpm-unique-93" targetRef="_jbpm-unique-97" name="constraint" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" >return !(ruleXOMHelper.inPutXom.taskType.equals("BranchApplyReplevyAuditOne") ||
+ruleXOMHelper.inPutXom.taskType.equals("HeadApplyReplevyAuditOne") ||
+ruleXOMHelper.inPutXom.taskType.equals("CenterApplyReplevyAuditOne"));</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_jbpm-unique-0-_jbpm-unique-97" sourceRef="_jbpm-unique-0" targetRef="_jbpm-unique-97" />
+    <sequenceFlow id="_jbpm-unique-97-_jbpm-unique-98" sourceRef="_jbpm-unique-97" targetRef="_jbpm-unique-98" />
+    <sequenceFlow id="_jbpm-unique-93-_jbpm-unique-0" sourceRef="_jbpm-unique-93" targetRef="_jbpm-unique-0" name="constraint" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" >return ruleXOMHelper.inPutXom.taskType.equals("CenterApplyReplevyAuditOne");</conditionExpression>
+    </sequenceFlow>
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="dispatchingRuleMainOfReplevyOfApplyReplevyAudit" >
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-92" >
+        <dc:Bounds x="321" y="10" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-93" >
+        <dc:Bounds x="321" y="86" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-94" >
+        <dc:Bounds x="170" y="147" width="147" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-95" >
+        <dc:Bounds x="379" y="146" width="153" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-97" >
+        <dc:Bounds x="321" y="239" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-98" >
+        <dc:Bounds x="322" y="302" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-0" >
+        <dc:Bounds x="591" y="147" width="125" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-92-_jbpm-unique-93" >
+        <di:waypoint x="345" y="34" />
+        <di:waypoint x="345" y="110" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-93-_jbpm-unique-94" >
+        <di:waypoint x="345" y="110" />
+        <di:waypoint x="243" y="110" />
+        <di:waypoint x="243" y="171" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-93-_jbpm-unique-95" >
+        <di:waypoint x="345" y="110" />
+        <di:waypoint x="455" y="110" />
+        <di:waypoint x="455" y="170" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-95-_jbpm-unique-97" >
+        <di:waypoint x="455" y="170" />
+        <di:waypoint x="345" y="263" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-94-_jbpm-unique-97" >
+        <di:waypoint x="243" y="171" />
+        <di:waypoint x="345" y="263" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-93-_jbpm-unique-97" >
+        <di:waypoint x="345" y="110" />
+        <di:waypoint x="345" y="263" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-0-_jbpm-unique-97" >
+        <di:waypoint x="653" y="171" />
+        <di:waypoint x="345" y="263" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-97-_jbpm-unique-98" >
+        <di:waypoint x="345" y="263" />
+        <di:waypoint x="346" y="326" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-93-_jbpm-unique-0" >
+        <di:waypoint x="345" y="110" />
+        <di:waypoint x="653" y="110" />
+        <di:waypoint x="653" y="171" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>

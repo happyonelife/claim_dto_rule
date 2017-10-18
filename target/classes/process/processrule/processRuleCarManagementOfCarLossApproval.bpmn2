@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.jboss.org/drools"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <process processType="Private" isExecutable="true" id="processRuleCarManagementOfCarLossApproval" name="processRuleCarManagementOfCarLossApproval" tns:packageName="com.sinosoft.processrule" >
+
+    <!-- nodes -->
+    <startEvent id="_jbpm-unique-15" name="Start"  isInterrupting="false">
+    </startEvent>
+    <businessRuleTask id="_jbpm-unique-16" name="初始化" g:ruleFlowGroup="processRuleCarManagementOfCarLossApprovalInit" >
+      <ioSpecification>
+        <inputSet>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+    </businessRuleTask>
+    <businessRuleTask id="_jbpm-unique-17" name="车辆定损Back" g:ruleFlowGroup="processRuleCarManagementOfCarLossApprovalInitAfterBack" >
+      <ioSpecification>
+        <inputSet>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+    </businessRuleTask>
+    <endEvent id="_jbpm-unique-18" name="End" >
+        <terminateEventDefinition />
+    </endEvent>
+    <businessRuleTask id="_jbpm-unique-0" name="车辆定损Common" g:ruleFlowGroup="processRuleCarManagementOfCarLossApprovalInitCommon" >
+      <ioSpecification>
+        <inputSet>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+    </businessRuleTask>
+    <businessRuleTask id="_jbpm-unique-1" name="车辆定损提交核损最低审核级别" g:ruleFlowGroup="processRuleAuditLevel" >
+      <ioSpecification>
+        <inputSet>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+    </businessRuleTask>
+    <businessRuleTask id="_jbpm-unique-2" name="核损初始化" g:ruleFlowGroup="processRuleCarManagementOfCarLossApprovalInitB" >
+      <ioSpecification>
+        <inputSet>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+    </businessRuleTask>
+    <businessRuleTask id="_jbpm-unique-3" name="车辆定损提交生成核损的初始任务类型" g:ruleFlowGroup="processRuleAuditLevelTaskType" >
+      <ioSpecification>
+        <inputSet>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+    </businessRuleTask>
+    <businessRuleTask id="_jbpm-unique-7" name="车辆定损提交核价最低审核级别" g:ruleFlowGroup="processRuleAuditLevelOfSpeciall" >
+      <ioSpecification>
+        <inputSet>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+    </businessRuleTask>
+    <businessRuleTask id="_jbpm-unique-8" name="车辆定损提交核价初始任务" g:ruleFlowGroup="processRuleAuditLevelTaskTypeOfSpeciall" >
+      <ioSpecification>
+        <inputSet>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+    </businessRuleTask>
+
+    <!-- connections -->
+    <sequenceFlow id="_jbpm-unique-2-_jbpm-unique-16" sourceRef="_jbpm-unique-2" targetRef="_jbpm-unique-16" />
+    <sequenceFlow id="_jbpm-unique-8-_jbpm-unique-17" sourceRef="_jbpm-unique-8" targetRef="_jbpm-unique-17" />
+    <sequenceFlow id="_jbpm-unique-0-_jbpm-unique-18" sourceRef="_jbpm-unique-0" targetRef="_jbpm-unique-18" />
+    <sequenceFlow id="_jbpm-unique-17-_jbpm-unique-0" sourceRef="_jbpm-unique-17" targetRef="_jbpm-unique-0" />
+    <sequenceFlow id="_jbpm-unique-16-_jbpm-unique-1" sourceRef="_jbpm-unique-16" targetRef="_jbpm-unique-1" />
+    <sequenceFlow id="_jbpm-unique-15-_jbpm-unique-2" sourceRef="_jbpm-unique-15" targetRef="_jbpm-unique-2" />
+    <sequenceFlow id="_jbpm-unique-1-_jbpm-unique-3" sourceRef="_jbpm-unique-1" targetRef="_jbpm-unique-3" />
+    <sequenceFlow id="_jbpm-unique-3-_jbpm-unique-7" sourceRef="_jbpm-unique-3" targetRef="_jbpm-unique-7" />
+    <sequenceFlow id="_jbpm-unique-7-_jbpm-unique-8" sourceRef="_jbpm-unique-7" targetRef="_jbpm-unique-8" />
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="processRuleCarManagementOfCarLossApproval" >
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-15" >
+        <dc:Bounds x="423" y="-5" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-16" >
+        <dc:Bounds x="358" y="134" width="177" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-17" >
+        <dc:Bounds x="357" y="509" width="180" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-18" >
+        <dc:Bounds x="424" y="714" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-0" >
+        <dc:Bounds x="362" y="605" width="173" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-1" >
+        <dc:Bounds x="356" y="207" width="181" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-2" >
+        <dc:Bounds x="359" y="66" width="173" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-3" >
+        <dc:Bounds x="354" y="275" width="189" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-7" >
+        <dc:Bounds x="355" y="350" width="187" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-8" >
+        <dc:Bounds x="355" y="424" width="184" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-2-_jbpm-unique-16" >
+        <di:waypoint x="445" y="90" />
+        <di:waypoint x="446" y="158" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-8-_jbpm-unique-17" >
+        <di:waypoint x="447" y="448" />
+        <di:waypoint x="447" y="533" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-0-_jbpm-unique-18" >
+        <di:waypoint x="448" y="629" />
+        <di:waypoint x="448" y="738" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-17-_jbpm-unique-0" >
+        <di:waypoint x="447" y="533" />
+        <di:waypoint x="448" y="629" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-16-_jbpm-unique-1" >
+        <di:waypoint x="446" y="158" />
+        <di:waypoint x="446" y="231" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-15-_jbpm-unique-2" >
+        <di:waypoint x="447" y="19" />
+        <di:waypoint x="445" y="90" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-1-_jbpm-unique-3" >
+        <di:waypoint x="446" y="231" />
+        <di:waypoint x="448" y="299" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-3-_jbpm-unique-7" >
+        <di:waypoint x="448" y="299" />
+        <di:waypoint x="448" y="374" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-7-_jbpm-unique-8" >
+        <di:waypoint x="448" y="374" />
+        <di:waypoint x="447" y="448" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>

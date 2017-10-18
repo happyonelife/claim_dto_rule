@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.jboss.org/drools"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <process processType="Private" isExecutable="true" id="dispatchingRuleMainOfUndwrt" name="dispatchingRuleMainOfUndwrt" tns:packageName="com.sinosoft.dispatchingRule" >
+
+    <extensionElements>
+     <tns:import name="com.sinosoft.bpm.rule.bean.model.RuleProcessOutputXOM" />
+     <tns:import name="com.sinosoft.bpm.rule.bean.model.RuleProcessInputXOM" />
+     <tns:global identifier="ruleXOMHelper" type="cn.sinosoft.processrule.helper.DealingProcessRuleXOM" />
+    </extensionElements>
+    <!-- nodes -->
+    <startEvent id="_jbpm-unique-66" name="Start"  isInterrupting="false">
+    </startEvent>
+    <exclusiveGateway id="_jbpm-unique-67" name="Gateway" gatewayDirection="Diverging" >
+    </exclusiveGateway>
+    <callActivity id="_jbpm-unique-68" name="总公司四级核赔规则流" calledElement="dispatchingRuleMainOfUndwrtOfHeadUndwrtFour" >
+      <ioSpecification>
+        <inputSet>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+    </callActivity>
+    <businessRuleTask id="_jbpm-unique-69" name="分公司一级核赔" g:ruleFlowGroup="dispatchingRuleNULL" >
+      <ioSpecification>
+        <inputSet>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+    </businessRuleTask>
+    <businessRuleTask id="_jbpm-unique-70" name="分公司二级核赔" g:ruleFlowGroup="dispatchingRuleNULL" >
+      <ioSpecification>
+        <inputSet>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+    </businessRuleTask>
+    <callActivity id="_jbpm-unique-71" name="总公司三级核赔规则流" calledElement="dispatchingRuleMainOfUndwrtOfHeadUndwrtThree" >
+      <ioSpecification>
+        <inputSet>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+    </callActivity>
+    <exclusiveGateway id="_jbpm-unique-72" name="Gateway" gatewayDirection="Converging" >
+    </exclusiveGateway>
+    <endEvent id="_jbpm-unique-73" name="End" >
+        <terminateEventDefinition />
+    </endEvent>
+    <businessRuleTask id="_jbpm-unique-7" name="新核赔派工规则" g:ruleFlowGroup="dispatchingRuleMainOfUndwrtOfNewUndwrt" >
+      <ioSpecification>
+        <inputSet>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+    </businessRuleTask>
+
+    <!-- connections -->
+    <sequenceFlow id="_jbpm-unique-66-_jbpm-unique-67" sourceRef="_jbpm-unique-66" targetRef="_jbpm-unique-67" />
+    <sequenceFlow id="_jbpm-unique-67-_jbpm-unique-68" sourceRef="_jbpm-unique-67" targetRef="_jbpm-unique-68" name="弃用" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" >//return ruleXOMHelper.inPutXom.taskType.equals("HeadUndwrtFour");
+return false;</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_jbpm-unique-67-_jbpm-unique-69" sourceRef="_jbpm-unique-67" targetRef="_jbpm-unique-69" name="弃用" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" >//return ruleXOMHelper.inPutXom.taskType.equals("BranchUndwrtOne");
+return false;</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_jbpm-unique-67-_jbpm-unique-70" sourceRef="_jbpm-unique-67" targetRef="_jbpm-unique-70" name="弃用" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" >//return ruleXOMHelper.inPutXom.taskType.equals("BranchUndwrtTwo");
+return false;</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_jbpm-unique-67-_jbpm-unique-71" sourceRef="_jbpm-unique-67" targetRef="_jbpm-unique-71" name="弃用" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" >//return ruleXOMHelper.inPutXom.taskType.equals("HeadUndwrtThree");
+return false;</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_jbpm-unique-68-_jbpm-unique-72" sourceRef="_jbpm-unique-68" targetRef="_jbpm-unique-72" />
+    <sequenceFlow id="_jbpm-unique-69-_jbpm-unique-72" sourceRef="_jbpm-unique-69" targetRef="_jbpm-unique-72" />
+    <sequenceFlow id="_jbpm-unique-70-_jbpm-unique-72" sourceRef="_jbpm-unique-70" targetRef="_jbpm-unique-72" />
+    <sequenceFlow id="_jbpm-unique-71-_jbpm-unique-72" sourceRef="_jbpm-unique-71" targetRef="_jbpm-unique-72" />
+    <sequenceFlow id="_jbpm-unique-67-_jbpm-unique-72" sourceRef="_jbpm-unique-67" targetRef="_jbpm-unique-72" name="constraint" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" >return !(ruleXOMHelper.inPutXom.taskType.equals("CenterUndwrtOne")||
+ruleXOMHelper.inPutXom.taskType.equals("CenterUndwrtTwo")||
+ruleXOMHelper.inPutXom.taskType.equals("CenterUndwrtThree")||
+ruleXOMHelper.inPutXom.taskType.equals("BranchUndwrtOne")||
+ruleXOMHelper.inPutXom.taskType.equals("BranchUndwrtTwo")||
+ruleXOMHelper.inPutXom.taskType.equals("BranchUndwrtThree")||
+ruleXOMHelper.inPutXom.taskType.equals("HeadUndwrtOne")||
+ruleXOMHelper.inPutXom.taskType.equals("HeadUndwrtTwo")||
+ruleXOMHelper.inPutXom.taskType.equals("HeadUndwrtThree"));</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_jbpm-unique-7-_jbpm-unique-72" sourceRef="_jbpm-unique-7" targetRef="_jbpm-unique-72" />
+    <sequenceFlow id="_jbpm-unique-72-_jbpm-unique-73" sourceRef="_jbpm-unique-72" targetRef="_jbpm-unique-73" />
+    <sequenceFlow id="_jbpm-unique-67-_jbpm-unique-7" sourceRef="_jbpm-unique-67" targetRef="_jbpm-unique-7" name="新的核赔派工" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" >return ruleXOMHelper.inPutXom.taskType.equals("CenterUndwrtOne")||
+ruleXOMHelper.inPutXom.taskType.equals("CenterUndwrtTwo")||
+ruleXOMHelper.inPutXom.taskType.equals("CenterUndwrtThree")||
+ruleXOMHelper.inPutXom.taskType.equals("BranchUndwrtOne")||
+ruleXOMHelper.inPutXom.taskType.equals("BranchUndwrtTwo")||
+ruleXOMHelper.inPutXom.taskType.equals("BranchUndwrtThree")||
+ruleXOMHelper.inPutXom.taskType.equals("HeadUndwrtOne")||
+ruleXOMHelper.inPutXom.taskType.equals("HeadUndwrtTwo")||
+ruleXOMHelper.inPutXom.taskType.equals("HeadUndwrtThree");</conditionExpression>
+    </sequenceFlow>
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="dispatchingRuleMainOfUndwrt" >
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-66" >
+        <dc:Bounds x="421" y="14" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-67" >
+        <dc:Bounds x="421" y="97" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-68" >
+        <dc:Bounds x="236" y="179" width="110" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-69" >
+        <dc:Bounds x="370" y="178" width="80" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-70" >
+        <dc:Bounds x="512" y="177" width="80" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-71" >
+        <dc:Bounds x="630" y="177" width="110" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-72" >
+        <dc:Bounds x="429" y="271" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-73" >
+        <dc:Bounds x="429" y="355" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-7" >
+        <dc:Bounds x="49" y="178" width="90" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-66-_jbpm-unique-67" >
+        <di:waypoint x="445" y="38" />
+        <di:waypoint x="445" y="121" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-67-_jbpm-unique-68" >
+        <di:waypoint x="445" y="121" />
+        <di:waypoint x="291" y="121" />
+        <di:waypoint x="291" y="203" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-67-_jbpm-unique-69" >
+        <di:waypoint x="445" y="121" />
+        <di:waypoint x="409" y="121" />
+        <di:waypoint x="410" y="202" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-67-_jbpm-unique-70" >
+        <di:waypoint x="445" y="121" />
+        <di:waypoint x="551" y="121" />
+        <di:waypoint x="552" y="201" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-67-_jbpm-unique-71" >
+        <di:waypoint x="445" y="121" />
+        <di:waypoint x="685" y="121" />
+        <di:waypoint x="685" y="201" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-68-_jbpm-unique-72" >
+        <di:waypoint x="291" y="203" />
+        <di:waypoint x="290" y="295" />
+        <di:waypoint x="453" y="295" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-69-_jbpm-unique-72" >
+        <di:waypoint x="410" y="202" />
+        <di:waypoint x="410" y="295" />
+        <di:waypoint x="453" y="295" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-70-_jbpm-unique-72" >
+        <di:waypoint x="552" y="201" />
+        <di:waypoint x="551" y="295" />
+        <di:waypoint x="453" y="295" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-71-_jbpm-unique-72" >
+        <di:waypoint x="685" y="201" />
+        <di:waypoint x="684" y="295" />
+        <di:waypoint x="453" y="295" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-67-_jbpm-unique-72" >
+        <di:waypoint x="445" y="121" />
+        <di:waypoint x="170" y="121" />
+        <di:waypoint x="170" y="295" />
+        <di:waypoint x="453" y="295" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-7-_jbpm-unique-72" >
+        <di:waypoint x="94" y="202" />
+        <di:waypoint x="94" y="295" />
+        <di:waypoint x="453" y="295" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-72-_jbpm-unique-73" >
+        <di:waypoint x="453" y="295" />
+        <di:waypoint x="453" y="379" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-67-_jbpm-unique-7" >
+        <di:waypoint x="445" y="121" />
+        <di:waypoint x="93" y="121" />
+        <di:waypoint x="94" y="202" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>
