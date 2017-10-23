@@ -150,6 +150,8 @@ public class RuleCarLossApproval {
 		private ArrayList<PrpLcarComponentPage> componentLists = new ArrayList<PrpLcarComponentPage>();
 		/**自定义配件比例*/
 		private Double customComponentProportion = 0d;
+		/**是否水淹*/
+		private String isFlooded = "N";
 			
 		public String getCarCountryNature() {
 			return carCountryNature;
@@ -565,5 +567,11 @@ public class RuleCarLossApproval {
 		public void setCustomComponentProportion(
 				Double customComponentProportion) {
 			this.customComponentProportion = customComponentProportion;
+		}
+		public String getIsFlooded() {
+			return isFlooded;
+		}
+		public void setIsFlooded(String isFlooded) {
+			this.isFlooded = isFlooded;
 		}
 }
