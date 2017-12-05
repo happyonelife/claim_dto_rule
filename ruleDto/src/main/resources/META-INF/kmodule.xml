@@ -1,18 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <kmodule xmlns="http://jboss.org/kie/6.0.0/kmodule">
-     <kbase name="businessrule" packages="process.businessrule">
-        <ksession name="ksession-businessrule"/>
-    </kbase>
-    <kbase name="dispatcherrule" packages="process.dispatcherrule">
-        <ksession name="ksession-dispatcherrule"/>
-    </kbase>
-    <kbase name="processrule" packages="process.processrule">
-        <ksession name="ksession-processrule"/>
-    </kbase>
-    <kbase name="synchronousrule" packages="process.synchronousrule">
-        <ksession name="ksession-synchronousrule"/>
-    </kbase>
-     <kbase name="riskinfo" packages="process.riskinfo">
+	<kbase name="riskinfo" packages="process.riskinfo">
         <ksession name="ksession-riskinfo"/>
     </kbase>
 </kmodule>
